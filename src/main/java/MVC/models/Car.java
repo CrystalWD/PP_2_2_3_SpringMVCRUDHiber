@@ -1,4 +1,4 @@
-package model;
+package MVC.models;
 
 public class Car {
     private String model;

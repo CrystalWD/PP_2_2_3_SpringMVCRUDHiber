@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Persons database</title>
+</head>
+<body>
+<a href = "/persons/new">Add new person</a>
+</hr>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Last name</th>
+        <th>Mail</th>
+    </tr>
+    <tr th:each="persons: ${persons}">
+        <td><a th:href="@{/persons/{id}(id=${persons.getId()})}" th:text="${persons.getName()}">Name</a></td>
+        <td th:text="${persons.getLastName()}">Last name</td>
+        <td th:text="${persons.getMail()}">Mail</td>
+    </tr>
+</table>
+</body>
+</html>

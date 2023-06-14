@@ -1,4 +1,4 @@
-package web.controller;
+package MVC.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/")
 public class HelloController {
 
 	@GetMapping(value = "/")

@@ -1,6 +1,6 @@
-package service;
+package MVC.service;
 
-import model.Car;
+import MVC.models.Car;
 
 
 import java.util.Arrays;
