@@ -1,43 +1,52 @@
 package MVC.service;
 
-import MVC.dao.PersonDAOImp;
 import MVC.models.Person;
+import MVC.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-@Component
-public class PersonServiceImp implements PersonService{
+import java.util.Optional;
 
-    private final PersonDAOImp personDAOImp;
+@Service
+@Transactional(readOnly = true)
+public class PersonServiceImp implements PersonService {
+
+    private final PersonRepository personRepository;
+
     @Autowired
-    PersonServiceImp(PersonDAOImp personDAOImp){
-        this.personDAOImp = personDAOImp;
+    PersonServiceImp(PersonRepository personRepository) {
+        this.personRepository = personRepository;
     }
-
 
     @Override
     public List<Person> getPersonsList() {
-        return personDAOImp.getPersonsList();
+        return personRepository.findAll();
     }
 
     @Override
     public Person getPersonById(int id) {
-        return personDAOImp.getPersonById(id);
+        Optional<Person> byId = personRepository.findById(id);
+        return byId.orElse(null);
     }
 
+    @Transactional
     @Override
     public void save(Person person) {
-        personDAOImp.save(person);
+        personRepository.save(person);
     }
 
+    @Transactional
     @Override
     public void update(int id, Person person) {
-        personDAOImp.update(id,person);
+        person.setId(id);
+        personRepository.save(person);
     }
 
+    @Transactional
     @Override
     public void delete(int id) {
-        personDAOImp.delete(id);
+        personRepository.delete(getPersonById(id));
     }
 }

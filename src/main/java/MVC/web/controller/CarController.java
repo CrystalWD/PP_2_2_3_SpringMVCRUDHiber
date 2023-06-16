@@ -11,11 +11,11 @@ import MVC.service.CarServiceImp;
 public class CarController {
 
     @GetMapping(value = "/car")
-    public String printCar(@RequestParam (value = "count",required = false) Integer count,
+    public String printCar(@RequestParam(value = "count", required = false) Integer count,
                            Model model) {
-        if(count == null){
+        if (count == null) {
             return "car";
-        } else if (count>5) {
+        } else if (count > 5) {
             count = 5;
         }
         model.addAttribute("cars", new CarServiceImp().getCarList(count));

@@ -1,9 +1,18 @@
 package MVC.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name="name")
     private String name;
-    private String lastName;
+    @Column(name = "last_name")
+    private String last_name;
+    @Column(name = "email")
     private String mail;
 
     public int getId() {
@@ -19,11 +28,11 @@ public class Person {
     }
 
     public String getLastName() {
-        return lastName;
+        return last_name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String last_name) {
+        this.last_name = last_name;
     }
 
     public String getMail() {
@@ -34,10 +43,9 @@ public class Person {
         this.mail = mail;
     }
 
-    public Person(int id, String name, String lastName, String mail) {
-        this.id = id;
+    public Person(String name, String last_name, String mail) {
         this.name = name;
-        this.lastName = lastName;
+        this.last_name = last_name;
         this.mail = mail;
     }
 
