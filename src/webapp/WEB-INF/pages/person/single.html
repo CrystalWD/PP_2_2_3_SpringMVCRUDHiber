@@ -6,9 +6,9 @@
     <title>Single person info</title>
 </head>
 <body>
-<a href="/persons">Goto persons</a>
+<a href="/person">Goto persons</a>
 </br>
-<a th:href="@{/persons/{id}/edit(id=${personById.getId()})}">Edit person info</a>
+<a th:href="@{/person/{id}/edit(id=${personById.getId()})}">Edit person info</a>
 
 <table border="1">
     <tr>
@@ -25,7 +25,7 @@
     </tr>
 </table>
 
-<form th:method="DELETE" th:action="@{/persons/{id}(id=${personById.getId()})}">
+<form th:method="DELETE" th:action="@{/person/{id}(id=${personById.getId()})}">
     <input type="submit" value="Delete"/>
 </form>
 

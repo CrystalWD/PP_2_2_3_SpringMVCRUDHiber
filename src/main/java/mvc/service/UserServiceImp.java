@@ -1,7 +1,8 @@
-package MVC.service;
+package mvc.service;
 
-import MVC.models.Person;
-import MVC.repositories.PersonRepository;
+
+import mvc.model.User;
+import mvc.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,37 +12,38 @@ import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
-public class PersonServiceImp implements PersonService {
+public class UserServiceImp implements UserService {
 
-    private final PersonRepository personRepository;
+    private final UserRepository personRepository;
+
 
     @Autowired
-    PersonServiceImp(PersonRepository personRepository) {
+    UserServiceImp(UserRepository personRepository) {
         this.personRepository = personRepository;
     }
 
     @Override
-    public List<Person> getPersonsList() {
+    public List<User> getPersonsList() {
         return personRepository.findAll();
     }
 
     @Override
-    public Person getPersonById(int id) {
-        Optional<Person> byId = personRepository.findById(id);
-        return byId.orElse(null);
+    public User getPersonById(int id) {
+        Optional<User> byId = personRepository.findById(id);
+        return byId.orElseThrow();
+    }
+
+
+    @Transactional
+    @Override
+    public void save(User user) {
+        personRepository.save(user);
     }
 
     @Transactional
     @Override
-    public void save(Person person) {
-        personRepository.save(person);
-    }
-
-    @Transactional
-    @Override
-    public void update(int id, Person person) {
-        person.setId(id);
-        personRepository.save(person);
+    public void update(int id, User user) {
+        personRepository.save(user);
     }
 
     @Transactional

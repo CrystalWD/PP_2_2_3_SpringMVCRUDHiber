@@ -1,4 +1,4 @@
-package MVC.web.config;
+package mvc.web.config;
 
 import org.springframework.core.env.Environment;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +18,7 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:hibernate.properties")
 @EnableTransactionManagement
-@EnableJpaRepositories("MVC.repositories")
+@EnableJpaRepositories("mvc.repository")
 public class HibernateConfig {
 
     private final Environment env;
@@ -51,7 +51,7 @@ public class HibernateConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(getDataSource());
-        em.setPackagesToScan("MVC.models");
+        em.setPackagesToScan("mvc.model");
 
         final HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(adapter);

@@ -5,18 +5,19 @@
     <title>Persons database</title>
 </head>
 <body>
-<a href="/persons/new">Add new person</a>
+<a href="/person/new">Add new person</a>
 </hr>
+
 <table border="1">
     <tr>
         <th>Name</th>
         <th>Last name</th>
         <th>Mail</th>
     </tr>
-    <tr th:each="persons: ${persons}">
-        <td><a th:href="@{/persons/{id}(id=${persons.getId()})}" th:text="${persons.getName}">Name</a></td>
-        <td th:text="${persons.getLastName()}">Last name</td>
-        <td th:text="${persons.getMail()}">Mail</td>
+    <tr th:each="user: ${persons}">
+        <td><a th:href="@{/person/{id}(id=${user.getId()})}" th:text="${user.getName}">Name</a></td>
+        <td th:text="${user.getLastName()}">Last name</td>
+        <td th:text="${user.getMail()}">Mail</td>
     </tr>
 </table>
 </body>
