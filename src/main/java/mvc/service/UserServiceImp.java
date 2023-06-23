@@ -43,7 +43,7 @@ public class UserServiceImp implements UserService {
 
     @Transactional
     @Override
-    public void update(int id, User user) {
+    public void update(User user) {
         personRepository.save(user);
     }
 

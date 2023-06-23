@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Edit person</title>
+    <title>New person</title>
 </head>
 <body>
+<form th:method="POST" th:action="@{/user}" th:object="${user}">
 
-<form th:method="PATCH" th:action="@{/person/{id}(id=${person.getId()})}" th:object="${person}">
+    <div style="color:red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Error</div>
+    </br>
 
     <label for="name">Name: </label>
     <input type="text" th:field="*{name}" id="name"/>
@@ -21,11 +24,10 @@
     <label for="mail">Mail: </label>
     <input type="text" th:field="*{mail}" id="mail"/>
     <div style="color:red" th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}">Error</div>
+
     </br>
 
-    <input type="submit" value="Update"/>
-
+    <input type="submit" value="Add"/>
 </form>
-
 </body>
 </html>
